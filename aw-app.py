@@ -53,9 +53,9 @@ def handle_data():
         return output_list
     elif request.method =='POST':
         response = requests.get('https://raw.githubusercontent.com/michaelx/climate/master/climate.json')
-        for item in response.json()['response']['docs']:
-            key = f'{item["hgnc_id"]}'
-            rd.set(item.get('hgnc_id'),json.dumps(item))
+        for item in response.json():
+            key = 'id'
+            rd.set(item.get('id'),json.dumps(item))
         return "data loaded into redis"
     elif request.method == 'DELETE':
         rd.flushdb()
