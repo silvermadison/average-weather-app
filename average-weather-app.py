@@ -82,6 +82,8 @@ def get_month_high(loc_num):
             highT (list): a list of the average high temperatures for each month in order for the chosen location
     '''
     highT = []
+    if loc_num >= len(climate_data):
+        return "Error: Location value is not in the data set" , 400
     for x in range(12):
         highT.append(climate_data[loc_num]['monthlyAvg'][x]['high'])
     return highT
@@ -95,6 +97,8 @@ def get_yr_high(loc_num):
         Returns:
             yr_highT (int): the average high temperature for the chosen location for the year
     '''
+    if loc_num >= len(climate_data):
+        return "Error: Location value is not in the data set" , 400
     highT_list = get_month_high(loc_num)
     sum = 0
     for x in highT_list:
@@ -111,6 +115,8 @@ def get_month_low(loc_num):
         Returns:
             lowT (list): a list of the average low temperatures for each month in order for the chosen location
     '''
+    if loc_num >= len(climate_data):
+        return "Error: Location value is not in the data set" , 400
     lowT = []
     for x in range(12):
         lowT.append(climate_data[loc_num]['monthlyAvg'][x]['low'])
@@ -125,6 +131,8 @@ def get_yr_low(loc_num):
         Returns:
             yr_lowT (int): the average low temperature for the chosen location for the year
     '''
+    if loc_num >= len(climate_data):
+        return "Error: Location value is not in the data set" , 400
     lowT_list = get_month_low(loc_num)
     sum = 0
     for x in lowT_list:
@@ -141,6 +149,8 @@ def get_month_dry(loc_num):
         Returns:
             dry (list): a list of the average dry days for each month in order for the chosen location
     '''
+    if loc_num >= len(climate_data):
+        return "Error: Location value is not in the data set" , 400
     dry = []
     for x in range(12):
         dry.append(climate_data[loc_num]['monthlyAvg'][x]['dryDays'])
@@ -155,6 +165,8 @@ def get_yr_dry(loc_num):
         Returns:
             yr_dry (int): the average nunmber of dry days for the chosen location for the year
     '''
+    if loc_num >= len(climate_data):
+        return "Error: Location value is not in the data set" , 400
     dry_list = get_month_dry(loc_num)
     sum = 0
     for x in dry_list:
@@ -171,6 +183,8 @@ def get_month_snow(loc_num):
         Returns:
             snow (list): a list of the average snow days for each month in order for the chosen location
     '''
+    if loc_num >= len(climate_data):
+        return "Error: Location value is not in the data set" , 400
     snow = []
     for x in range(12):
         snow.append(climate_data[loc_num]['monthlyAvg'][x]['snowDays'])
@@ -185,6 +199,8 @@ def get_yr_snow(loc_num):
         Returns:
             yr_snow (int): the average nunmber of snow days for the chosen location for the year
     '''
+    if loc_num >= len(climate_data):
+        return "Error: Location value is not in the data set" , 400
     snow_list = get_month_snow(loc_num)
     sum = 0
     for x in snow_list:
@@ -201,6 +217,8 @@ def get_month_rainfall(loc_num):
         Returns:
             rainfall (list): a list of the average rainy days for each month in order for the chosen location
     '''
+    if loc_num >= len(climate_data):
+        return "Error: Location value is not in the data set" , 400
     rainfall = []
     for x in range(12):
         rainfall.append(climate_data[loc_num]['monthlyAvg'][x]['rainfall'])
@@ -215,6 +233,8 @@ def get_yr_rainfall(loc_num):
         Returns:
             yr_rainfall (int): the average nunmber of rainy days for the chosen location for the year
     '''
+    if loc_num >= len(climate_data):
+        return "Error: Location value is not in the data set" , 400
     rain_list = get_month_rainfall(loc_num)
     sum = 0
     for x in rain_list:
@@ -231,6 +251,8 @@ def get_yrly_avs(loc_num):
         Returns:
             yr_avs (dict): a dictionary of the averages for the year which includes highTemp, lowTemp, dryDays, snowDays, and rainfall
     '''
+    if loc_num >= len(climate_data):
+        return "Error: Location value is not in the data set" , 400
     yr_avs = {}
     yr_avs['highTemp'] = get_yr_high(loc_num)
     yr_avs['lowTemp']= get_yr_low(loc_num)
