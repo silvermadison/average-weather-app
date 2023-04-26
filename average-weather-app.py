@@ -31,6 +31,11 @@ def post_data():
 
 @app.route('/countries', methods=['GET'])
 def get_countries():
+    '''
+        This function gets a lsit of all the countries in the dataset
+        Returns:
+        countries (list): a list of countries in the climate dataset
+    '''
     country_list = []
     max_list = len(climate_data)
     for x in range(max_list):
@@ -43,6 +48,11 @@ def get_countries():
 
 @app.route('/locations', methods=['GET'])
 def get_cities():
+    '''
+        This function gets a list of all the cities in the climate dataset
+        Returns:
+        city_list (list): a list of cities in the dataset
+    '''
     city_list = []
     max_list = len(climate_data)
     for x in range(max_list):
@@ -51,12 +61,26 @@ def get_cities():
 
 @app.route('/locations/<int:loc_num>', methods=['GET'])
 def get_location_data(loc_num):
+    '''
+        This function returns all the information for 1 specific location given by a number from the user.
+        Args:
+            loc_num (int): the specific number (index) of the data set to look at
+        Returns:
+            climate_data[loc_num] (dict): a dictionary of location data include the ID, city, country, and monthlyAvg information for each month
+    '''
     if loc_num >= len(climate_data):
         return "Error: Location value is not in the data set" , 400
     return climate_data[loc_num]
 
 @app.route('/locations/<int:loc_num>/high-month', methods=['GET'])
 def get_month_high(loc_num):
+    '''
+        This function returns the monthly average high tempature for 1 specific location given by a number from the user.
+        Args:
+            loc_num (int): the specific number (index) of the data set to look at
+        Returns:
+            highT (list): a list of the average high temperatures for each month in order for the chosen location
+    '''
     highT = []
     for x in range(12):
         highT.append(climate_data[loc_num]['monthlyAvg'][x]['high'])
@@ -64,6 +88,13 @@ def get_month_high(loc_num):
 
 @app.route('/locations/<int:loc_num>/high-year', methods=['GET'])
 def get_yr_high(loc_num):
+    '''
+        This function returns the high temperature year average for 1 specific location given by a number from the user.
+        Args:
+            loc_num (int): the specific number (index) of the data set to look at
+        Returns:
+            yr_highT (int): the average high temperature for the chosen location for the year
+    '''
     highT_list = get_month_high(loc_num)
     sum = 0
     for x in highT_list:
@@ -73,6 +104,13 @@ def get_yr_high(loc_num):
 
 @app.route('/locations/<int:loc_num>/low-month', methods=['GET'])
 def get_month_low(loc_num):
+    '''
+        This function returns the monthly average low tempatures for 1 specific location given by a number from the user.
+        Args:
+            loc_num (int): the specific number (index) of the data set to look at
+        Returns:
+            lowT (list): a list of the average low temperatures for each month in order for the chosen location
+    '''
     lowT = []
     for x in range(12):
         lowT.append(climate_data[loc_num]['monthlyAvg'][x]['low'])
@@ -80,6 +118,13 @@ def get_month_low(loc_num):
 
 @app.route('/locations/<int:loc_num>/low-year', methods=['GET'])
 def get_yr_low(loc_num):
+    '''
+        This function returns the avaerage low temperature for the year for 1 specific location given by a number from the user.
+        Args:
+            loc_num (int): the specific number (index) of the data set to look at
+        Returns:
+            yr_lowT (int): the average low temperature for the chosen location for the year
+    '''
     lowT_list = get_month_low(loc_num)
     sum = 0
     for x in lowT_list:
@@ -89,6 +134,13 @@ def get_yr_low(loc_num):
 
 @app.route('/locations/<int:loc_num>/dry-month', methods=['GET'])
 def get_month_dry(loc_num):
+    '''
+        This function returns the monthly average dry days for 1 specific location given by a number from the user.
+        Args:
+            loc_num (int): the specific number (index) of the data set to look at
+        Returns:
+            dry (list): a list of the average dry days for each month in order for the chosen location
+    '''
     dry = []
     for x in range(12):
         dry.append(climate_data[loc_num]['monthlyAvg'][x]['dryDays'])
@@ -96,6 +148,13 @@ def get_month_dry(loc_num):
 
 @app.route('/locations/<int:loc_num>/dry-year', methods=['GET'])
 def get_yr_dry(loc_num):
+    '''
+        This function returns the average number of dry days a year for 1 specific location given by a number from the user.
+        Args:
+            loc_num (int): the specific number (index) of the data set to look at
+        Returns:
+            yr_dry (int): the average nunmber of dry days for the chosen location for the year
+    '''
     dry_list = get_month_dry(loc_num)
     sum = 0
     for x in dry_list:
@@ -105,6 +164,13 @@ def get_yr_dry(loc_num):
 
 @app.route('/locations/<int:loc_num>/snow-month', methods=['GET'])
 def get_month_snow(loc_num):
+    '''
+        This function returns the monthly average snow days for 1 specific location given by a number from the user.
+        Args:
+            loc_num (int): the specific number (index) of the data set to look at
+        Returns:
+            snow (list): a list of the average snow days for each month in order for the chosen location
+    '''
     snow = []
     for x in range(12):
         snow.append(climate_data[loc_num]['monthlyAvg'][x]['snowDays'])
@@ -112,6 +178,13 @@ def get_month_snow(loc_num):
 
 @app.route('/locations/<int:loc_num>/snow-year', methods=['GET'])
 def get_yr_snow(loc_num):
+    '''
+        This function returns the average number of snow days a year for 1 specific location given by a number from the user.
+        Args:
+            loc_num (int): the specific number (index) of the data set to look at
+        Returns:
+            yr_snow (int): the average nunmber of snow days for the chosen location for the year
+    '''
     snow_list = get_month_snow(loc_num)
     sum = 0
     for x in snow_list:
@@ -121,6 +194,13 @@ def get_yr_snow(loc_num):
 
 @app.route('/locations/<int:loc_num>/rainfall-month', methods=['GET'])
 def get_month_rainfall(loc_num):
+    '''
+        This function returns the monthly average rainy days for 1 specific location given by a number from the user.
+        Args:
+            loc_num (int): the specific number (index) of the data set to look at
+        Returns:
+            rainfall (list): a list of the average rainy days for each month in order for the chosen location
+    '''
     rainfall = []
     for x in range(12):
         rainfall.append(climate_data[loc_num]['monthlyAvg'][x]['rainfall'])
@@ -128,6 +208,13 @@ def get_month_rainfall(loc_num):
 
 @app.route('/locations/<int:loc_num>/rainfall-year', methods=['GET'])
 def get_yr_rainfall(loc_num):
+    '''
+        This function returns the average number of rainy days a year for 1 specific location given by a number from the user.
+        Args:
+            loc_num (int): the specific number (index) of the data set to look at
+        Returns:
+            yr_rainfall (int): the average nunmber of rainy days for the chosen location for the year
+    '''
     rain_list = get_month_rainfall(loc_num)
     sum = 0
     for x in rain_list:
@@ -137,6 +224,13 @@ def get_yr_rainfall(loc_num):
 
 @app.route('/locations/<int:loc_num>/year', methods=['GET'])
 def get_yrly_avs(loc_num):
+    '''
+        This function returns the cliamtes yearly averages for 1 specific location given by a number from the user.
+        Args:
+            loc_num (int): the specific number (index) of the data set to look at
+        Returns:
+            yr_avs (dict): a dictionary of the averages for the year which includes highTemp, lowTemp, dryDays, snowDays, and rainfall
+    '''
     yr_avs = {}
     yr_avs['highTemp'] = get_yr_high(loc_num)
     yr_avs['lowTemp']= get_yr_low(loc_num)
@@ -145,6 +239,33 @@ def get_yrly_avs(loc_num):
     yr_avs['rainfall']= get_yr_rainfall(loc_num)
     return yr_avs
 
+@app.route('/help', methods=['GET'])
+def all_routes():
+    '''
+        This function returns a list of all the possible routes in this API and a short description of what they each return.
+     Returns:
+            (str): a string with routes and what they return
+    '''
+    welcome = "Welcome to Help! Below are available routes and their return statements. \n \n"
+    r1 = ("The route '/data' returns the entire data set. \n") 
+    r2 = ("The route '/countries' returns a list of all the countries in the data set. \n") 
+    r3= ("The route '/locations' returns a list of epochs in the data set between offset and limit. If offset is not given then the list will start at the first epoch and if limit is not given the list will end at the last epoch. \n")
+    r4 =("The route '/locations/<loc_num>' returns a dictionary of the specific epoch data set requested with unique keys about its position and velocity data. \n")
+    r5 = ("The route '/locations/<loc_num>/high-month' returns the average high temperatures for each month given a specific location number/id in the dataset \n")
+    r6 =("The route '/locations/<loc_num>/high-year' returns the yearly average high temperature for a specific location number/id in the dataset \n")
+    r7 =("The route '/locations/<loc_num>/low-month' returns the average low temperatures for each month given a specific location number/id in the dataset \n")
+    r8 = ("The route '/locations/<loc_num>/low-year' returns the yearly average low temperature for a specific location number/id in the dataset \n")
+    r9 = ("The route '/locations/<loc_num>/dry-month' returns the average number of dry days for each month given a specific location number/id in the dataset  \n")
+    r10 = ("The route '/locations/<loc_num>/dry-year' returns the yearly number of dry days for a specific location number/id in the dataset \n")
+    r11 = ("The route '/locations/<loc_num>/snow-month' returns the average number of snow days for each month given a specific location number/id in the dataset \n")
+    r12 = ("The route '/locations/<loc_num>/snow-year' returns the yearly number of snow days for a specific location number/id in the dataset \n")
+    r13 = ("The route '/locations/<loc_num>/rainfall-month' returns the average number of rainy days for each month given a specific location number/id in the dataset \n")
+    r14 = ("The route '/locations/<loc_num>/rainfall-year' returns the yearly number of rainy days for a specific location number/id in the dataset \n")
+    r15 = ("The route '/locations/<loc_num>/year' returns the cliamtes yearly averages for a specific location number/id in the dataset \n")
+    
+    return welcome +r1 + r2 +r3 +r4 +r5 +r6+r7+r8+r9+r10+r11+r12+r13+r14+r15
+    
+    
 #-----------------------------end of routes--------------------------------
 
 if __name__ == '__main__':
