@@ -17,6 +17,17 @@ climate_data = data.json()
 def handle_data():
     return climate_data
     
+@app.route('/delete-data', methods=['DELETE'])
+def delete_data():
+    global climate_data
+    climate_data = []
+    return climate_data
+
+@app.route('/post-data', methods=['POST'])
+def post_data():
+    global climate_data
+    climate_data = data.json()
+    return "the data has been posted"
 
 @app.route('/countries', methods=['GET'])
 def get_countries():
