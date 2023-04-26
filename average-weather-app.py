@@ -9,9 +9,6 @@ import json
 app = Flask(__name__)
 
 url = "https://raw.githubusercontent.com/michaelx/climate/master/climate.json"
-
-#with open('climate.json', 'r') as f:
-#    climate_data = json.load(f)
 data = requests.get(url)
 climate_data = data.json()
 
@@ -62,6 +59,54 @@ def get_yr_high(loc_num):
         sum = sum+x
     yr_highT = sum/12
     return str(yr_highT)
+
+@app.route('/locations/<int:loc_num>/low-month', methods=['GET'])
+def get_month_low(loc_num):
+    lowT = []
+    for x in range(12):
+        lowT.append(climate_data[loc_num]['monthlyAvg'][x]['low'])
+    return lowT
+
+@app.route('/locations/<int:loc_num>/low-year', methods=['GET'])
+def get_yr_low(loc_num):
+    lowT_list = get_month_low(loc_num)
+    sum = 0
+    for x in lowT_list:
+        sum = sum+x
+    yr_lowT = sum/12
+    return str(yr_lowT)
+
+@app.route('/locations/<int:loc_num>/dry-month', methods=['GET'])
+def get_month_dry(loc_num):
+    dry = []
+    for x in range(12):
+        dry.append(climate_data[loc_num]['monthlyAvg'][x]['dryDays'])
+    return dry
+
+@app.route('/locations/<int:loc_num>/dry-year', methods=['GET'])
+def get_yr_dry(loc_num):
+    dry_list = get_month_dry(loc_num)
+    sum = 0
+    for x in dry_list:
+        sum = sum+x
+    yr_dry = sum/12
+    return str(yr_dry)
+
+@app.route('/locations/<int:loc_num>/snow-month', methods=['GET'])
+def get_month_snow(loc_num):
+    snow = []
+    for x in range(12):
+        snow.append(climate_data[loc_num]['monthlyAvg'][x]['snowDays'])
+    return snow
+
+@app.route('/locations/<int:loc_num>/snow-year', methods=['GET'])
+def get_yr_snow(loc_num):
+    snow_list = get_month_snow(loc_num)
+    sum = 0
+    for x in snow_list:
+        sum = sum+x
+    yr_snow = sum/12
+    return str(yr_snow)
 
 @app.route('/locations/<int:loc_num>/rainfall-month', methods=['GET'])
 def get_month_rainfall(loc_num):
