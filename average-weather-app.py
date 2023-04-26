@@ -271,8 +271,8 @@ def all_routes():
     welcome = "Welcome to Help! Below are available routes and their return statements. \n \n"
     r1 = ("The route '/data' returns the entire data set. \n") 
     r2 = ("The route '/countries' returns a list of all the countries in the data set. \n") 
-    r3= ("The route '/locations' returns a list of epochs in the data set between offset and limit. If offset is not given then the list will start at the first epoch and if limit is not given the list will end at the last epoch. \n")
-    r4 =("The route '/locations/<loc_num>' returns a dictionary of the specific epoch data set requested with unique keys about its position and velocity data. \n")
+    r3= ("The route '/locations' returns a list of cities in the dataset. \n")
+    r4 =("The route '/locations/<loc_num>' returns a dictionary of climate data associated with a given location number/id in the dataset. \n")
     r5 = ("The route '/locations/<loc_num>/high-month' returns the average high temperatures for each month given a specific location number/id in the dataset \n")
     r6 =("The route '/locations/<loc_num>/high-year' returns the yearly average high temperature for a specific location number/id in the dataset \n")
     r7 =("The route '/locations/<loc_num>/low-month' returns the average low temperatures for each month given a specific location number/id in the dataset \n")
