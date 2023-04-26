@@ -37,20 +37,20 @@ Below are app routes to navigate this API. The requests, json, and redis modules
 | ```/locations/<loc_num>/low-month/plot``` | GET | retrieves the histogram image from redis if there is one | 
 | ```/locations/<loc_num>/low-month/plot``` | POST | posts a histogram of the average low temperatures by month for a given location num/ID to redis | 
 | ```/locations/<loc_num>/low-month/plot``` | DELETE | deletes an image from redis | 
-| ```/locations/<loc_num>/dry-month``` | GET | returns the average average number of dry days for each month given a specific location number/id in the dataset | 
+| ```/locations/<loc_num>/dry-month``` | GET | returns the average number of dry days for each month given a specific location number/id in the dataset | 
 | ```/locations/<loc_num>/dry-year``` | GET | returns the yearly average average number of dry days for a specific location number/id in the dataset |
 | ```/locations/<loc_num>/dry-month/plot``` | GET | retrieves the histogram image from redis if there is one | 
 | ```/locations/<loc_num>/dry-month/plot``` | POST | posts a histogram of the average number of dry days by month for a given location num/ID to redis | 
 | ```/locations/<loc_num>/dry-month/plot``` | DELETE | deletes an image from redis | 
-| ```/locations/<loc_num>/snow-month``` | GET | returns the average average number of snow days for each month given a specific location number/id in the dataset | 
+| ```/locations/<loc_num>/snow-month``` | GET | returns the average number of snow days for each month given a specific location number/id in the dataset | 
 | ```/locations/<loc_num>/snow-year``` | GET | returns the yearly average average number of snow days for a specific location number/id in the dataset |
 | ```/locations/<loc_num>/snow-month/plot``` | GET | retrieves the histogram image from redis if there is one | 
 | ```/locations/<loc_num>/snow-month/plot``` | POST | posts a histogram of the average number of snow days by month for a given location num/ID to redis | 
 | ```/locations/<loc_num>/snow-month/plot``` | DELETE | deletes an image from redis | 
-| ```/locations/<loc_num>/rainfall-month``` | GET | returns the average average number of rainy days for each month given a specific location number/id in the dataset | 
-| ```/locations/<loc_num>/rainfall-year``` | GET | returns the yearly average average number of rainy days for a specific location number/id in the dataset |
+| ```/locations/<loc_num>/rainfall-month``` | GET | returns the average rainfall for each month given a specific location number/id in the dataset | 
+| ```/locations/<loc_num>/rainfall-year``` | GET | returns the yearly average rainfall for a specific location number/id in the dataset |
 | ```/locations/<loc_num>/rainfall-month/plot``` | GET | retrieves the histogram image from redis if there is one | 
-| ```/locations/<loc_num>/rainfall-month/plot``` | POST | posts a histogram of the average number of rainy days by month for a given location num/ID to redis | 
+| ```/locations/<loc_num>/rainfall-month/plot``` | POST | posts a histogram of the average rainfall by month for a given location num/ID to redis | 
 | ```/locations/<loc_num>/rainfall-month/plot``` | DELETE | deletes an image from redis | 
 | ```/locations/<loc_num>/year``` | GET | returns the cliamtes yearly averages for a specific location number/id in the dataset | 
 
