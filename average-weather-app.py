@@ -211,11 +211,11 @@ def get_yr_snow(loc_num):
 @app.route('/locations/<int:loc_num>/rainfall-month', methods=['GET'])
 def get_month_rainfall(loc_num):
     '''
-        This function returns the monthly average rainy days for 1 specific location given by a number from the user.
+        This function returns the monthly average rainfall for 1 specific location given by a number from the user.
         Args:
             loc_num (int): the specific number (index) of the data set to look at
         Returns:
-            rainfall (list): a list of the average rainy days for each month in order for the chosen location
+            rainfall (list): a list of the average rainfall for each month in order for the chosen location
     '''
     if loc_num >= len(climate_data):
         return "Error: Location value is not in the data set" , 400
@@ -227,11 +227,11 @@ def get_month_rainfall(loc_num):
 @app.route('/locations/<int:loc_num>/rainfall-year', methods=['GET'])
 def get_yr_rainfall(loc_num):
     '''
-        This function returns the average number of rainy days a year for 1 specific location given by a number from the user.
+        This function returns the average rainfall in a year for 1 specific location given by a number from the user.
         Args:
             loc_num (int): the specific number (index) of the data set to look at
         Returns:
-            yr_rainfall (int): the average nunmber of rainy days for the chosen location for the year
+            yr_rainfall (int): the average rainfall for the chosen location for the year
     '''
     if loc_num >= len(climate_data):
         return "Error: Location value is not in the data set" , 400
@@ -281,8 +281,8 @@ def all_routes():
     r10 = ("The route '/locations/<loc_num>/dry-year' returns the yearly number of dry days for a specific location number/id in the dataset \n")
     r11 = ("The route '/locations/<loc_num>/snow-month' returns the average number of snow days for each month given a specific location number/id in the dataset \n")
     r12 = ("The route '/locations/<loc_num>/snow-year' returns the yearly number of snow days for a specific location number/id in the dataset \n")
-    r13 = ("The route '/locations/<loc_num>/rainfall-month' returns the average number of rainy days for each month given a specific location number/id in the dataset \n")
-    r14 = ("The route '/locations/<loc_num>/rainfall-year' returns the yearly number of rainy days for a specific location number/id in the dataset \n")
+    r13 = ("The route '/locations/<loc_num>/rainfall-month' returns the average rainfall for each month given a specific location number/id in the dataset \n")
+    r14 = ("The route '/locations/<loc_num>/rainfall-year' returns the yearly rainfall for a specific location number/id in the dataset \n")
     r15 = ("The route '/locations/<loc_num>/year' returns the cliamtes yearly averages for a specific location number/id in the dataset \n")
     
     return welcome +r1 + r2 +r3 +r4 +r5 +r6+r7+r8+r9+r10+r11+r12+r13+r14+r15
