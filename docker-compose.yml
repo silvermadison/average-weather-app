@@ -15,5 +15,6 @@ services:
                 ports:
                         - 5000:5000
 
-                image: silvermadison/average-weather-app.py:1.0
+                image: silvermadison/aw-app.py:1.0
+
 
