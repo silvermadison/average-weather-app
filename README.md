@@ -86,18 +86,18 @@ To get the image from Docker Hub use the command ```docker pull danielasanchez/a
 ### Build a New Image from This Dockerfile
 In order to retrieve the data from this repository use the command
 ```
-git clone git@github.com:silvermadison/my-coe332-hws.git
+git clone git@github.com:DanielaLeticia/weather_restAPI.git
 ```
 This will provide you with all the data in this repository. 
 
 
-Create the image using the command ```docker build -t silvermadison/gene_api:1.0 .```.
+Create the image using the command ```docker build -t danielasanchez/aw_app:1.0 .```.
 
 
 Check to make sure the image is there using the command ```docker images```. Output should look similar to:
 ```
 REPOSITORY                  TAG       IMAGE ID       CREATED          SIZE
-silvermadison/gene_api   1.0      9b88163e71e8   7 minutes ago    897MB
+danielasanchez/aw_app:1.0   1.0      9b88163e71e8   7 minutes ago    897MB
 ```
 
 
@@ -105,15 +105,18 @@ silvermadison/gene_api   1.0      9b88163e71e8   7 minutes ago    897MB
 All the yaml files in the repository need to be created and uploaded to Kubernetes. Do so through the command ```kubectl apply -f <filename>``` on the Kubernetes accessible machine. After each command line you should get a statement saying the file was created. 
 Ensure the files are running properly. For the command ```kubectl get pods``` output should look like:
 ```
-NAME                                    READY   STATUS    RESTARTS        AGE
-msilver-test-flask-6568f5856d-k2mxd     1/1     Running   0               2h
-msilver-test-redis-758b75b5c8-cnkcz     1/1     Running   0               3h
-py-debug-deployment-f484b4b99-wxdsx     1/1     Running   0               8d
+NAME                                            READY   STATUS    RESTARTS        AGE
+weather-app-api-deployment-686fd5ff69-h6vkk     1/1     Running   0               2h
+weather-app-redis-deployment-57667bb9f6-n5xhg   1/1     Running   0               3h
+weather-app-wrk-deployment-686fd5ff69-trhlw     1/1     Running   0               3h
+py-debug-deployment-f484b4b99-wxdsx             1/1     Running   0               8d
 ```
 And, for the command ```kubectl get services``` output should look similar to:
 ```
-NAME                 TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
-msilver-test-flask   ClusterIP   10.233.35.77    <none>        5000/TCP   36h
+NAME                           TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
+weather-app-redis-service      ClusterIP   10.233.7.221    <none>        5000/TCP         58m
+weather-app-service-nodeport   NodePort    10.233.9.14     <none>        5000:31863/TCP   59m
+
 ``` 
 
 
@@ -122,11 +125,13 @@ After running the ```kubectl get pods``` command, notice the python debug deploy
 The shell prompt should change to the following, which shows that you are “inside” the container: ```root@py-debug-deployment-f484b4b99-wxdsx:/#```. From here, run an API route. Note the Cluster-IP address for your service after the command  ```kubectl get services```. This IP will be used in replacement for “localhost”.
 
 ### API Command Examples
-The ```/data``` and ```/image``` routes include three different methods (POST, GET, DELETE). To specify which method use the notation ```-X <METHOD>``` after the curl command. If no method is specified, it is assumed to be a “GET” method. The ```/data``` will complete one of the three tasks based on the method given: **post** the data to Redis, return/**get** the data for the user, or **delete** the data from the Redis database. The ```/image``` will complete one of the three tasks based on the method given: **post** the image to Redis which is a histogram of the number of gene group ID numbers in the databse, return/**get** the image to the user, or **delete** the image from the Redis database.
-An example: ```curl -X DELETE 10.233.35.77:5000/data```
+The ```/data``` and ```/image``` routes include three different methods (POST, GET, DELETE). To specify which method use the notation ```-X <METHOD>``` after the curl command. If no method is specified, it is assumed to be a “GET” method. The ```/data``` will complete one of the three tasks based on the method given: **post** the data to Redis, return/**get** the data for the user, or **delete** the data from the Redis database. 
+
+Similarly all the routes with "/plot" at the end of the route will need a method specified. These routes will complete one of the three tasks based on the method given: **post** the image to Redis which is a histogram of monthly averages of a climate group(high temp, low temp, dry days, snow days, or rainfall) from a specific location in the databse, return/**get** the image to the user, or **delete** the image from the Redis database.
+An example: ```curl -X DELETE 10.233.7.221:5000/ ....```
 ```
 data deleted, there are 0 keys in the database
 ```
-The ```/genes``` route returns a list of all the HGNC genes in the Redis database. Use the command: ```curl 10.233.35.77:5000/genes```.
+The ```ROUTE``` route returns ... Use the command: ```curl 10.233.7.221:5000/ ....```.
 
-The ```/genes/<hgnc_id>``` route returns all the information associated with a given <hgnc_id> that is within the Redis database. Use the command: ```curl 10.233.35.77:5000/genes/HGNC:9987```.
+The ```ROUTE``` route returns ... Use the command: ```curl 10.233.7.221:5000/ ....```.
