@@ -418,7 +418,7 @@ def get_snow_plot(loc_num):
         if loc_num >= len(alldata):
             return "Error: Location value is not in the data set" , 400
         snow = get_month_snow(loc_num)
-        plt.hist(snow, 5)
+        plt.hist(snow, 3)
         title = f'Average Number of Snow Days in {alldata[loc_num]["city"]}'
         plt.title(title)
         plt.xlabel('Months (Jan to Dec)')
@@ -440,11 +440,11 @@ def get_snow_plot(loc_num):
 @app.route('/locations/<int:loc_num>/rainfall-month', methods=['GET'])
 def get_month_rainfall(loc_num):
     '''
-        This function returns the monthly average rainy days for 1 specific location given by a number from the user.
+        This function returns the monthly average rainfall for 1 specific location given by a number from the user.
         Args:
             loc_num (int): the specific number (index) of the data set to look at
         Returns:
-            rainfall (list): a list of the average rainy days for each month in order for the chosen location
+            rainfall (list): a list of the average rainfall for each month in order for the chosen location
     '''
     rain = []
     for item in rd.keys():
@@ -458,11 +458,11 @@ def get_month_rainfall(loc_num):
 @app.route('/locations/<int:loc_num>/rainfall-year', methods=['GET'])
 def get_yr_rainfall(loc_num):
     '''
-        This function returns the average number of rainy days a year for 1 specific location given by a number from the user.
+        This function returns the average rainfall a year for 1 specific location given by a number from the user.
         Args:
             loc_num (int): the specific number (index) of the data set to look at
         Returns:
-            yr_rainfall (int): the average nunmber of rainy days for the chosen location for the year
+            yr_rainfall (int): the average rainfall for the chosen location for the year
     '''
     for item in rd.keys():
         alldata.append(json.loads(rd.get(item)))
@@ -480,7 +480,7 @@ def get_rainfall_plot(loc_num):
     '''
     This function will get, post, or delete an image from the dataset based on the method verb provided by the user.
     Returns:
-        image(png): histogram of the average number of rainy days by month for a given location num/ID
+        image(png): histogram of the average rainfall by month for a given location num/ID
         OR
         (str): stating the the image in the database has been posted or deleted
     '''
@@ -498,11 +498,11 @@ def get_rainfall_plot(loc_num):
         if loc_num >= len(alldata):
             return "Error: Location value is not in the data set" , 400
         rain = get_month_rainfall(loc_num)
-        plt.hist(rain, 5)
+        plt.hist(rain, 20)
         title = f'Average Number of Rainy Days in {alldata[loc_num]["city"]}'
         plt.title(title)
         plt.xlabel('Months (Jan to Dec)')
-        plt.ylabal('Number of Days')
+        plt.ylabal('Rainfall in mm')
         plt.savefig('./rain_avs.png')
         filebytes = open('./rain_avs.png','rb').read()
         rd_img.set('rain_avs', filebytes)
@@ -554,8 +554,8 @@ def all_routes():
     r10 = ("The route '/locations/<loc_num>/dry-year' returns the yearly number of dry days for a specific location number/id in the dataset \n")
     r11 = ("The route '/locations/<loc_num>/snow-month' returns the average number of snow days for each month given a specific location number/id in the dataset \n")
     r12 = ("The route '/locations/<loc_num>/snow-year' returns the yearly number of snow days for a specific location number/id in the dataset \n")
-    r13 = ("The route '/locations/<loc_num>/rainfall-month' returns the average number of rainy days for each month given a specific location number/id in the dataset \n")
-    r14 = ("The route '/locations/<loc_num>/rainfall-year' returns the yearly number of rainy days for a specific location number/id in the dataset \n")
+    r13 = ("The route '/locations/<loc_num>/rainfall-month' returns the average rainfall for each month given a specific location number/id in the dataset \n")
+    r14 = ("The route '/locations/<loc_num>/rainfall-year' returns the yearly rainfall for a specific location number/id in the dataset \n")
     r15 = ("The route '/locations/<loc_num>/year' returns the cliamtes yearly averages for a specific location number/id in the dataset \n")
     r16 = ("The route '/locations/<loc_num>/high-month/plot' returns, posts, or deletes a histogram image of the monthly average high temperatures for a given location number/id based on the verb given. \n") 
     r17 = ("The route '/locations/<loc_num>/low-month/plot' returns, posts, or deletes a histogram image of the monthly average low temperatues for a given location number/id based on the verb given. \n") 
