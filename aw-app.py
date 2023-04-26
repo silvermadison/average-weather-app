@@ -161,7 +161,7 @@ def get_month_high(loc_num):
         plt.hist(highT, 5)
         title = f'Average High Temperatures in {alldata[loc_num]["city"]}'
         plt.title(title)
-        plt.xlabel('Months')
+        plt.xlabel('Months (Jan to Dec)')
         plt.ylabal('Temperature in Celsius')
         plt.savefig('./highT_avs.png')
         filebytes = open('./highT_avs.png','rb').read()
