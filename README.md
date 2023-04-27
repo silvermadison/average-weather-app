@@ -135,7 +135,7 @@ An example: ```curl msilver.coe332.tacc.cloud/data -X DELETE```
 data deleted, there are [] keys in the database
 ```
 
-The ```ROUTE``` route returns a list of all the countries in the data set. Use the command: ```curl msilver.coe332.tacc.cloud/countries```. Example output is:
+The ```/countries``` route returns a list of all the countries in the data set. Use the command: ```curl msilver.coe332.tacc.cloud/countries```. Example output is:
 ```
 [
   "United States",
@@ -186,7 +186,7 @@ The ```ROUTE``` route returns a list of all the countries in the data set. Use t
 ]
 ```
 
-The ```ROUTE``` route returns ... Use the command: ```curl msilver.coe332.tacc.cloud/locations/0/high-year```.
+The ```/locations/0/high-year``` route returns ... Use the command: ```curl msilver.coe332.tacc.cloud/locations/0/high-year```.
 ```
 
 ```
