@@ -122,7 +122,7 @@ Note the NodePort address for your service after the command  ```kubectl get ser
 ### Accessing the API
 This API can be curled from any machine using the command ```curl msilver.coe332.tacc.cloud/<ROUTE>```.
 
-### API Command Examples
+### API Command and Output Examples
 The ```/data``` and ```... /plot``` routes include three different methods (POST, GET, DELETE). To specify which method use the notation ```-X <METHOD>``` after the curl command. If no method is specified, it is assumed to be a “GET” method. 
 The ```/data``` will complete one of the three tasks based on the method given: **post** the data to Redis, return/**get** the data for the user, or **delete** the data from the Redis database. The ```.../plot``` routes will complete one of the three tasks based on the method given: **post** the image to Redis which is a histogram of monthly averages of a climate group(high temp, low temp, dry days, snow days, or rainfall) from a specific location in the databse, return/**get** the image to the user, or **delete** the image from the Redis database.
 
@@ -132,6 +132,58 @@ An example: ```curl msilver.coe332.tacc.cloud/data -X DELETE```
 data deleted, there are [] keys in the database
 ```
 
-The ```ROUTE``` route returns ... Use the command: ```curl msilver.coe332.tacc.cloud/countries```.
+The ```ROUTE``` route returns a list of all the countries in the data set. Use the command: ```curl msilver.coe332.tacc.cloud/countries```. Example output is:
+```
+[
+  "United States",
+  "India",
+  "Morocco",
+  "China",
+  "Poland",
+  "Spain",
+  "Australia",
+  "Chile",
+  "Italy",
+  "Canada",
+  "Russia",
+  "Portugal",
+  "Ireland",
+  "Mexico",
+  "Belgium",
+  "Turkey",
+  "Iceland",
+  "New Zealand",
+  "Singapore",
+  "Hong Kong",
+  "Switzerland",
+  "Brazil",
+  "Thailand",
+  "Netherlands",
+  "Norway",
+  "Hungary",
+  "South Africa",
+  "Indonesia",
+  "Germany",
+  "Czech Republic",
+  "France",
+  "Israel",
+  "Argentina",
+  "Bulgaria",
+  "Japan",
+  "Denmark",
+  "Malaysia",
+  "United Arab Emirates",
+  "United Kingdom",
+  "Sweden",
+  "Vietnam",
+  "Hawaii",
+  "Greece",
+  "Austria",
+  "South Korea"
+]
+```
 
 The ```ROUTE``` route returns ... Use the command: ```curl msilver.coe332.tacc.cloud/locations/0/high-year```.
+```
+
+```
