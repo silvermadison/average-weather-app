@@ -104,7 +104,7 @@ After executing this command and noticing the image has been created, you are re
 
 ### Kubernetes
 All the yaml files in the repository need to be created and uploaded to Kubernetes. Do so through the command ```kubectl apply -f <filename>``` on the Kubernetes accessible machine. After each command line you should get a statement saying the file was created. 
-Ensure the files are running properly. For the command ```kubectl get pods``` output should look like:
+Ensure the files are running properly using ```kubectl get``` commands for the pvc, pods, and services. For the command ```kubectl get pods``` output should look like:
 ```
 NAME                                            READY   STATUS    RESTARTS        AGE
 weather-app-api-deployment-686fd5ff69-h6vkk     1/1     Running   0               2h
@@ -117,22 +117,25 @@ And, for the command ```kubectl get services``` output should look similar to:
 NAME                           TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
 weather-app-redis-service      ClusterIP   10.233.7.221    <none>        5000/TCP         58m
 weather-app-service-nodeport   NodePort    10.233.9.14     <none>        5000:31863/TCP   59m
-
 ``` 
 
+#### Check for Proper Installation
+After running the ```kubectl get pods``` command, notice the python debug deployment pod. In order to make commands on the API, we will need to run a shell in this pod. Do so with: ```kubectl exec -it <python debug deployment pod name> – /bin/bash```.
+The shell prompt should change to the following, which shows that you are “inside” the container: ```root@py-debug-deployment-f484b4b99-wxdsx:/#```. From here, run an API route. Note the NodePort address for your service after the command  ```kubectl get services```. The IP following "5000:" for the ```weather-app-service-nodeport``` service, which in this case is 31863, will be used in the ```weather-prod-api-ingress.yml``` in port: number: . Make sure this is the correct port number for your machine or else you will not be able to use this API on the cloud. 
 
 ### Accessing the API
-After running the ```kubectl get pods``` command, notice the python debug deployment pod. In order to make commands on the API, we will need to run a shell in this pod. Do so with: ```kubectl exec -it <python debug deployment pod name> – /bin/bash```.
-The shell prompt should change to the following, which shows that you are “inside” the container: ```root@py-debug-deployment-f484b4b99-wxdsx:/#```. From here, run an API route. Note the Cluster-IP address for your service after the command  ```kubectl get services```. This IP will be used in replacement for “localhost”.
+This API can be curled from any machine using the command ```curl msilver.coe332.tacc.cloud/<ROUTE>```.
 
 ### API Command Examples
-The ```/data``` and ```/image``` routes include three different methods (POST, GET, DELETE). To specify which method use the notation ```-X <METHOD>``` after the curl command. If no method is specified, it is assumed to be a “GET” method. The ```/data``` will complete one of the three tasks based on the method given: **post** the data to Redis, return/**get** the data for the user, or **delete** the data from the Redis database. 
+The ```/data``` and ```... /plot``` routes include three different methods (POST, GET, DELETE). To specify which method use the notation ```-X <METHOD>``` after the curl command. If no method is specified, it is assumed to be a “GET” method. 
+The ```/data``` will complete one of the three tasks based on the method given: **post** the data to Redis, return/**get** the data for the user, or **delete** the data from the Redis database. The ```.../plot``` routes will complete one of the three tasks based on the method given: **post** the image to Redis which is a histogram of monthly averages of a climate group(high temp, low temp, dry days, snow days, or rainfall) from a specific location in the databse, return/**get** the image to the user, or **delete** the image from the Redis database.
 
-Similarly all the routes with "/plot" at the end of the route will need a method specified. These routes will complete one of the three tasks based on the method given: **post** the image to Redis which is a histogram of monthly averages of a climate group(high temp, low temp, dry days, snow days, or rainfall) from a specific location in the databse, return/**get** the image to the user, or **delete** the image from the Redis database.
-An example: ```curl -X DELETE 10.233.7.221:5000/ ....```
-```
-data deleted, there are 0 keys in the database
-```
-The ```ROUTE``` route returns ... Use the command: ```curl 10.233.7.221:5000/ ....```.
 
-The ```ROUTE``` route returns ... Use the command: ```curl 10.233.7.221:5000/ ....```.
+An example: ```curl msilver.coe332.tacc.cloud/data -X DELETE```
+```
+data deleted, there are [] keys in the database
+```
+
+The ```ROUTE``` route returns ... Use the command: ```curl msilver.coe332.tacc.cloud/countries```.
+
+The ```ROUTE``` route returns ... Use the command: ```curl msilver.coe332.tacc.cloud/locations/0/high-year```.
