@@ -188,5 +188,5 @@ The ```/countries``` route returns a list of all the countries in the data set. 
 
 The ```/locations/0/high-year``` route returns ... Use the command: ```curl msilver.coe332.tacc.cloud/locations/0/high-year```.
 ```
-
+29.166666666666668 degrees celsius
 ```
