@@ -4,7 +4,7 @@
 This API uses software design principles to help a user understand the climate of an area in the Climate Data database with over 100 cities accross the world.
 
 ## Contents
-This folder includes ... 
+This folder includes 1 script of the api routes, 7 yaml files, 2 scripts (worker and jobs), 2 Dockerfiles, and 1 docker-compose. 
 
 
 ## Required Modules
