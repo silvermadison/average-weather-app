@@ -116,9 +116,8 @@ weather-app-redis-service      ClusterIP   10.233.7.221    <none>        5000/TC
 weather-app-service-nodeport   NodePort    10.233.9.14     <none>        5000:31863/TCP   59m
 ``` 
 
-#### Check for Proper Installation
-After running the ```kubectl get pods``` command, notice the python debug deployment pod. In order to make commands on the API, we will need to run a shell in this pod. Do so with: ```kubectl exec -it <python debug deployment pod name> – /bin/bash```.
-The shell prompt should change to the following, which shows that you are “inside” the container: ```root@py-debug-deployment-f484b4b99-wxdsx:/#```. From here, run an API route. Note the NodePort address for your service after the command  ```kubectl get services```. The IP following "5000:" for the ```weather-app-service-nodeport``` service, which in this case is 31863, will be used in the ```weather-prod-api-ingress.yml``` in port: number: . Make sure this is the correct port number for your machine or else you will not be able to use this API on the cloud. 
+#### Note on Ports
+Note the NodePort address for your service after the command  ```kubectl get services```. The IP following "5000:" for the ```weather-app-service-nodeport``` service, which in this case is 31863, will be used in the ```weather-prod-api-ingress.yml``` in port: number: . Make sure this is the correct port number for your machine or else you will not be able to use this API from any machine. 
 
 ### Accessing the API
 This API can be curled from any machine using the command ```curl msilver.coe332.tacc.cloud/<ROUTE>```.
