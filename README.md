@@ -79,9 +79,6 @@ Follow similar instruction above for the remaining RUN commands in the Dockerfil
 
 
 ## Instructions
-### Pull the Image from Docker Hub
-To get the image from Docker Hub use the command ```docker pull danielasanchez/aw_app:1.0```.
-
 
 ### Accessing this Repository
 In order to retrieve the data from this repository use the command
@@ -92,15 +89,15 @@ This will provide you with all the data in this repository.
 
 ### Docker Image
 #### Build a New Image from This Dockerfile
-		First, it is important that we are signed into DockerHub. This can be done through their website by using a simple username and password. Next, in the command line, you must have all of the files needed in one folder in order to push to DockerHub. Files that are necessary include the main API file, docker-compose.yml, and the Dockerfile. Then, type the command ```docker build -t <username>/<api_file>:<version> .```. The username should be your DockerHub username, the api_file should be the name of the main API script, and the version is the version of the image. In this case, create the image using the command ```docker build -t danielasanchez/aw_app:1.0 .```. It is always a good idea to start with version 1.0. Check to make sure the image is there using the command ```docker images```. Output should look similar to:
+First, it is important that we are signed into DockerHub. This can be done through their website by using a simple username and password. Next, in the command line, you must have all of the files needed in one folder in order to push to DockerHub. Files that are necessary include the main API file, docker-compose.yml, and the Dockerfile. Then, type the command ```docker build -t <username>/<api_file>:<version> .```. The username should be your DockerHub username, the api_file should be the name of the main API script, and the version is the version of the image. In this case, create the image using the command ```docker build -t danielasanchez/aw_app:1.0 .```. It is always a good idea to start with version 1.0. Check to make sure the image is there using the command ```docker images```. Output should look similar to:
 ```
 REPOSITORY                  TAG       IMAGE ID       CREATED          SIZE
 danielasanchez/aw_app:1.0   1.0      9b88163e71e8   7 minutes ago    897MB
 ```
 After executing this command and noticing the image has been created, you are ready to push to DockerHub. The next step is to log into DockerHub through the command line by using the command: ```docker login``` . You should get a “Login Succeeded” message when the command is executed. Lastly, push the image to DockerHub using the command: ```docker push <username>/<api_file>:<version>```. You should get a “Pushed” message and that is how you know the push was complete. You may now be able to go into DockerHub and see that the image is now stored. 
-    
+
 #### Pull the Image from DockerHub
-    Pulling an image from DockerHub is also quite simple, you must also be logged into Docker in order to retrieve images. The pull process takes one simple command: `docker pull <image_name>` or `docker image pull <image_name>`. These both will do the same thing. It is important to note that if there is no :<version> specified, docker will automatically assume that you are trying to pull the latest version. 
+Pulling an image from DockerHub is also quite simple, you must also be logged into Docker in order to retrieve images. The pull process takes one simple command: `docker pull <image_name>` or `docker image pull <image_name>`. These both will do the same thing. It is important to note that if there is no :<version> specified, docker will automatically assume that you are trying to pull the latest version. To get the image from Docker Hub use the command ```docker pull danielasanchez/aw_app:1.0```.
 
 ### Kubernetes
 All the yaml files in the repository need to be created and uploaded to Kubernetes. Do so through the command ```kubectl apply -f <filename>``` on the Kubernetes accessible machine. After each command line you should get a statement saying the file was created. 
