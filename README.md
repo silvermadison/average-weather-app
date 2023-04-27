@@ -12,7 +12,10 @@ This project requires the installation of the requests, Flask, json, redis, matp
 
 
 ## Climate Data
-... take from writeup
+The data set itself contains 105 dictionaries, these are the cities and each dictionary contains dictionaries within those. There are twelve of these nested dictionaries, one for each month of the year, that each contain data for the corresponding month. Information for every month includes the average high temperature, the average lowest temperature, average dry days, average snow days, and the average rainfall. It is important to note that the temperatures are Celsius and the rainfall is in millimeters. This is also stated in the output of the code. 
+
+More information about this cliamte data can be found at this website: https://michaelxander.com/climate-data/
+The git repository being used in this project can also be accessed here: https://github.com/michaelx/climate
 
 
 ### Part 1 - Routes
