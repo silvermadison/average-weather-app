@@ -14,7 +14,7 @@ This project requires the installation of the requests, Flask, json, redis, matp
 ## Climate Data
 The data set itself contains 105 dictionaries, these are the cities and each dictionary contains dictionaries within those. There are twelve of these nested dictionaries, one for each month of the year, that each contain data for the corresponding month. Information for every month includes the average high temperature, the average lowest temperature, average dry days, average snow days, and the average rainfall. It is important to note that the temperatures are Celsius and the rainfall is in millimeters. This is also stated in the output of the code. 
 
-More information about this cliamte data can be found at this website: https://michaelxander.com/climate-data/
+More information about this climate data can be found at this website: https://michaelxander.com/climate-data/
 The git repository being used in this project can also be accessed here: https://github.com/michaelx/climate
 
 
@@ -55,7 +55,7 @@ Below are app routes to navigate this API. The requests, json, and redis modules
 | ```/locations/<loc_num>/rainfall-month/plot``` | GET | retrieves the histogram image from redis if there is one | 
 | ```/locations/<loc_num>/rainfall-month/plot``` | POST | posts a histogram of the average rainfall by month for a given location num/ID to redis | 
 | ```/locations/<loc_num>/rainfall-month/plot``` | DELETE | deletes an image from redis | 
-| ```/locations/<loc_num>/year``` | GET | returns the cliamtes yearly averages for a specific location number/id in the dataset | 
+| ```/locations/<loc_num>/year``` | GET | returns the climates yearly averages for a specific location number/id in the dataset | 
 
 
 
